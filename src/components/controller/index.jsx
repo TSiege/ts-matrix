@@ -2,16 +2,22 @@ import React from 'react'
 import Track from '../track'
 import { deepClone, stepPerMs } from '../../utils'
 import { NOTES, SEQUENCES } from '../../utils/data'
+import { TonePlayer } from '../../utils/audio'
 import './styles.css'
 
 export default class Controller extends React.Component {
   constructor(props) {
     super(props)
+    const audioCtx = new AudioContext()
+    const player = new TonePlayer(audioCtx)
+
     this.state = {
       bpm: 128,
       step: null,
       interval: null,
       isPlaying: false,
+      audioCtx,
+      player,
       sequences: [...deepClone(SEQUENCES)]
     }
   }
@@ -88,7 +94,7 @@ export default class Controller extends React.Component {
   }
 
   renderTracks() {
-    const { step, isPlaying, sequences } = this.state
+    const { step, isPlaying, sequences, player } = this.state
     return sequences.map((sequence, i) => {
       const note = NOTES[i]
       return <Track
@@ -96,6 +102,7 @@ export default class Controller extends React.Component {
         pos={i}
         name={note}
         step={step}
+        player={player}
         isPlaying={isPlaying}
         sequence={sequence}
         toggleSequence={this.toggleSequence}
