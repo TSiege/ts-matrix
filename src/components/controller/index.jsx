@@ -1,12 +1,8 @@
 import React from 'react'
 import Track from '../track'
-import Sequence from '../sequences'
 import { deepClone, stepPerMs } from '../../utils'
-import { TRACKS, SEQUENCES, SEQUENCE_NAMES } from '../../utils/data'
+import { NOTES, SEQUENCES } from '../../utils/data'
 import './styles.css'
-
-const NOTES = ['C4', 'D4', 'E4', 'F4', 'G4', 'A4', 'B4', 'C5', 'D5', 'E5', 'F5', 'G5', 'A5', 'B5', 'C6', 'D6']
-
 
 export default class Controller extends React.Component {
   constructor(props) {
@@ -16,7 +12,7 @@ export default class Controller extends React.Component {
       step: null,
       interval: null,
       isPlaying: false,
-      ...deepClone(SEQUENCES['Sequence 1'])
+      sequences: [...deepClone(SEQUENCES)]
     }
   }
 
@@ -64,12 +60,13 @@ export default class Controller extends React.Component {
     this.setState({ ...deepClone(SEQUENCES[name]) })
   }
 
-  toggleSequence = (name, i) => {
-    const currentSequence = this.state[name]
-    const updatedSequence = deepClone(currentSequence)
-    const step = updatedSequence[i]
-    updatedSequence[i] = !step
-    this.setState({ [name]: updatedSequence })
+  toggleSequence = (pos, i) => {
+    console.log({ pos, i })
+    const sequence = this.state.sequences[pos]
+    const step = sequence[i]
+    sequence[i] = !step
+    console.log({ i, pos, step })
+    this.setState({ sequences: this.state.sequences })
   }
 
   renderPlayButton() {
@@ -91,12 +88,13 @@ export default class Controller extends React.Component {
   }
 
   renderTracks() {
-    const { step, isPlaying } = this.state
-    return TRACKS.map((name, i) => {
-      const sequence = this.state[name]
+    const { step, isPlaying, sequences } = this.state
+    return sequences.map((sequence, i) => {
+      const note = NOTES[i]
       return <Track
         key={i}
-        name={name}
+        pos={i}
+        name={note}
         step={step}
         isPlaying={isPlaying}
         sequence={sequence}
@@ -106,8 +104,6 @@ export default class Controller extends React.Component {
   }
 
 render() {
-const noteNodes = NOTES.map(n => <audio src={`${process.env.PUBLIC_URL}/samples/${n}.wav`} type="audio/wav"></audio>)
-
     return (
       <div className="controller">
         <div className="header">
@@ -119,12 +115,8 @@ const noteNodes = NOTES.map(n => <audio src={`${process.env.PUBLIC_URL}/samples/
             {this.renderPlayButton()}
             <input value={this.state.bpm} onChange={this.updateBpm}/>
             <span className="bpm">BPM</span>
-            <Sequence sequences={SEQUENCE_NAMES} onSelect={this.selectSequence}/>
           </span>
         </div>
-        <section>
-          {noteNodes}
-        </section>
         <div className="steps">
           {this.renderSteps()}
         </div>

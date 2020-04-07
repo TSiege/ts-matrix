@@ -17,14 +17,14 @@ export default class Track extends React.Component {
     }
   }
 
-  toggleStepState = async (step) => {
-    const { sequence, name } = this.props
+  toggleStepState = async (i) => {
+    const { sequence, pos } = this.props
     const updatedSequence = [...sequence]
-    const isPlaying = !updatedSequence[step]
+    const isPlaying = !updatedSequence[i]
     if (isPlaying) {
       this.playEffect()
     }
-    this.props.toggleSequence(name, step)
+    this.props.toggleSequence(pos, i)
   }
 
   renderStepButtons() {

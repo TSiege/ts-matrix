@@ -5,5 +5,9 @@
 }
 
 .track h3 {
-  margin-right: 10px;
+  margin: 0px 10px;
+}
+
+.step-buttons {
+  margin-top: -2px;
 }
