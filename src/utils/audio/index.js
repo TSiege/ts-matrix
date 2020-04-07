@@ -1,13 +1,5 @@
+import { AudioContext } from 'standardized-audio-context'
 import { NOTES_TO_HZ } from './tones'
-
-export async function fetchAudioFile(path, audioCtx = new AudioContext()) {
-  // const source = audioCtx.createBufferSource()
-  const myRequest = new Request(path)
-
-  const response = await fetch(myRequest)
-  const buffer = await response.arrayBuffer()
-  return audioCtx.decodeAudioData(buffer)
-}
 
 const SAMPLE_RATE = 44100
 const calcAngularFreq = (hz) => hz * 2 * Math.PI
