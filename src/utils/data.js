@@ -25,7 +25,7 @@
 //     'Closed Hat': new Array(16).fill(false),
 //   }
 // }
-export const NOTES = ['C3', 'D3', 'E3', 'F3', 'G3', 'A3', 'B3', 'C4', 'D4', 'E4', 'F4', 'G4', 'A4', 'B4', 'C5', 'D5']
+export const NOTES = ['D5', 'C5', 'B4', 'A4', 'G4', 'F4', 'E4', 'D4', 'C4', 'B3', 'A3', 'G3', 'F3', 'E3', 'D3', 'C3']
 export const SEQUENCES = [
   new Array(16).fill(false),
   new Array(16).fill(false),
