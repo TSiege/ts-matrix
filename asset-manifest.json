@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/js-matrix/static/css/main.0e71827a.chunk.css",
-    "main.js": "/js-matrix/static/js/main.f39782ea.chunk.js",
-    "main.js.map": "/js-matrix/static/js/main.f39782ea.chunk.js.map",
+    "main.js": "/js-matrix/static/js/main.e576331c.chunk.js",
+    "main.js.map": "/js-matrix/static/js/main.e576331c.chunk.js.map",
     "runtime-main.js": "/js-matrix/static/js/runtime-main.6767252e.js",
     "runtime-main.js.map": "/js-matrix/static/js/runtime-main.6767252e.js.map",
     "static/js/2.e90b8979.chunk.js": "/js-matrix/static/js/2.e90b8979.chunk.js",
     "static/js/2.e90b8979.chunk.js.map": "/js-matrix/static/js/2.e90b8979.chunk.js.map",
     "index.html": "/js-matrix/index.html",
-    "precache-manifest.857bccfbc3c06c6d5b325c624a5bdfd1.js": "/js-matrix/precache-manifest.857bccfbc3c06c6d5b325c624a5bdfd1.js",
+    "precache-manifest.8a0325e475ee1902c8c7c8326a7ac22e.js": "/js-matrix/precache-manifest.8a0325e475ee1902c8c7c8326a7ac22e.js",
     "service-worker.js": "/js-matrix/service-worker.js",
     "static/css/main.0e71827a.chunk.css.map": "/js-matrix/static/css/main.0e71827a.chunk.css.map",
     "static/js/2.e90b8979.chunk.js.LICENSE.txt": "/js-matrix/static/js/2.e90b8979.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.6767252e.js",
     "static/js/2.e90b8979.chunk.js",
     "static/css/main.0e71827a.chunk.css",
-    "static/js/main.f39782ea.chunk.js"
+    "static/js/main.e576331c.chunk.js"
   ]
 }
