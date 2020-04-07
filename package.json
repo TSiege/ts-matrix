@@ -1,7 +1,7 @@
 {
-  "name": "js-808",
+  "name": "js-matrix",
   "version": "0.1.0",
-  "homepage": "http://tsiege.github.io/js-808",
+  "homepage": "http://tsiege.github.io/js-matrix",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
