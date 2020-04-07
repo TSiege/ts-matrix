@@ -46,10 +46,8 @@ export default class Track extends React.Component {
   }
 
   render() {
-    const { name } = this.props
     return (
       <div className="track">
-        <audio id={name} src={`${process.env.PUBLIC_URL}/samples/${name}.wav`} type="audio/wav"></audio>
         <h3>{this.props.name}</h3>
         <span className="step-buttons">
           {this.renderStepButtons()}

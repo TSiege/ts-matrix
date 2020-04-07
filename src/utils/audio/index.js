@@ -9,13 +9,13 @@ export async function fetchAudioFile(path, audioCtx = new AudioContext()) {
   return audioCtx.decodeAudioData(buffer)
 }
 
-
+const SAMPLE_RATE = 44100
 const calcAngularFreq = (hz) => hz * 2 * Math.PI
 
 export function generateToneBuffer({ hz, audioCtx }) {
-  const duration = 22050 / 2
+  const duration = SAMPLE_RATE * 2
   const angularFreq = calcAngularFreq(hz)
-  const buffer = audioCtx.createBuffer(1, duration, 44100)
+  const buffer = audioCtx.createBuffer(1, duration, SAMPLE_RATE)
   const bufferArray = buffer.getChannelData(0)
   for (let sampleNumber = 0; sampleNumber < duration; sampleNumber++) {
     const sampleTime = sampleNumber / 44100
@@ -41,16 +41,16 @@ export class TonePlayer {
     this.buffersByTone = generateToneBuffers(audioCtx)
   }
 
-  play(tone, duration = 2) {
+  play(tone) {
     const { audioCtx, buffersByTone } = this
     const source = audioCtx.createBufferSource()
-    // const gain = audioCtx.createGain()
-    // gain.gain.exponentialRampToValueAtTime(
-    //   0.00001, duration
-    // )
+    const gain = audioCtx.createGain()
+    gain.gain.setTargetAtTime(0, audioCtx.currentTime, 0)
     source.buffer = buffersByTone[tone]
-    source.connect(audioCtx.destination)
-    // gain.connect(audioCtx.destination)
+    source.connect(gain)
+    gain.connect(audioCtx.destination)
     source.start()
+    gain.gain.setTargetAtTime(1, audioCtx.currentTime, 0.05)
+    gain.gain.setTargetAtTime(0, audioCtx.currentTime + 0.25, 0.125)
   }
 }

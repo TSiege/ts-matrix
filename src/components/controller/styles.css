@@ -1,5 +1,5 @@
 .controller {
-  width: 800px;
+  width: 500px;
   padding: 30px 5px 5px;
   margin: 0 auto;
   background-color: var(--darkGrey);
@@ -68,8 +68,7 @@
 }
 
 .step {
-  margin: 0px 5px;
-  padding: 5px;
+  padding: 5px 3.5px;
   width: 20px;
   text-align: center;
 }
