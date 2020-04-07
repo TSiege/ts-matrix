@@ -5,6 +5,9 @@ import { deepClone, stepPerMs } from '../../utils'
 import { TRACKS, SEQUENCES, SEQUENCE_NAMES } from '../../utils/data'
 import './styles.css'
 
+const NOTES = ['C4', 'D4', 'E4', 'F4', 'G4', 'A4', 'B4', 'C5', 'D5', 'E5', 'F5', 'G5', 'A5', 'B5', 'C6', 'D6']
+
+
 export default class Controller extends React.Component {
   constructor(props) {
     super(props)
@@ -102,7 +105,9 @@ export default class Controller extends React.Component {
     })
   }
 
-  render() {
+render() {
+const noteNodes = NOTES.map(n => <audio src={`${process.env.PUBLIC_URL}/samples/${n}.wav`} type="audio/wav"></audio>)
+
     return (
       <div className="controller">
         <div className="header">
@@ -117,6 +122,9 @@ export default class Controller extends React.Component {
             <Sequence sequences={SEQUENCE_NAMES} onSelect={this.selectSequence}/>
           </span>
         </div>
+        <section>
+          {noteNodes}
+        </section>
         <div className="steps">
           {this.renderSteps()}
         </div>
