@@ -1,16 +1,16 @@
 import { AudioContext } from 'standardized-audio-context'
 import { NOTES_TO_HZ } from './tones'
 
-const SAMPLE_RATE = 44100
+const SAMPLE_RATE = 8000
 const calcAngularFreq = (hz) => hz * 2 * Math.PI
 
 export function generateToneBuffer({ hz, audioCtx }) {
-  const duration = SAMPLE_RATE * 1
+  const duration = SAMPLE_RATE
   const angularFreq = calcAngularFreq(hz)
   const buffer = audioCtx.createBuffer(1, duration, SAMPLE_RATE)
   const bufferArray = buffer.getChannelData(0)
   for (let sampleNumber = 0; sampleNumber < duration; sampleNumber++) {
-    const sampleTime = sampleNumber / 44100
+    const sampleTime = sampleNumber / SAMPLE_RATE
     const sampleAngle = sampleTime * angularFreq
     const sample = Math.sin(sampleAngle)
     bufferArray[sampleNumber] = sample
