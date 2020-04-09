@@ -4,21 +4,14 @@
   "homepage": "http://tsiege.github.io/js-matrix",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1",
     "standardized-audio-context": "^24.1.2"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
+    "start": "parcel serve src/index.html",
+    "build": "cross-env NODE_ENV=production parcel build src/index.html --public-url .",
+    "watch": "parcel watch src/index.html",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d dist"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -36,6 +29,9 @@
     ]
   },
   "devDependencies": {
-    "gh-pages": "^2.2.0"
+    "cross-env": "^7.0.2",
+    "gh-pages": "^2.2.0",
+    "parcel-bundler": "^1.12.4",
+    "typescript": "^3.8.3"
   }
 }
