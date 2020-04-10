@@ -1,5 +1,5 @@
 import { NOTES } from './audio'
-import { Matrix } from './components/matrix'
+import { renderMatrix } from './components/matrix'
 
 function onReady(fn) {
   if (document.readyState !== 'loading') {
@@ -10,8 +10,7 @@ function onReady(fn) {
 }
 
 function renderJsMatrix () {
-  const matrix = new Matrix(NOTES)
-  matrix.renderMatrix()
+  const matrix = renderMatrix(NOTES)
 }
 
 onReady(renderJsMatrix)

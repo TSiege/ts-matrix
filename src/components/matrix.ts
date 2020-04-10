@@ -1,11 +1,36 @@
+let mouseup = true
+let isTurningOn = true
+
+function onMousedown(e: MouseEvent) {
+  mouseup = false
+  const button = e.target as HTMLElement
+  isTurningOn = !button.classList.contains('on')
+  button.classList.toggle('on')
+}
+
+function onMouseup() {
+  mouseup = true
+}
+
+function toggleButtonOnMouseEnter(e: MouseEvent) {
+  const button = e.target as HTMLElement
+  if (mouseup) {
+    return
+  }
+  const isOn = button.classList.contains('on')
+  if ((isOn && !isTurningOn) || (!isOn && isTurningOn)) {
+    button.classList.toggle('on')
+  }
+}
+
 function createButton(row: number, col: number) {
   const button = document.createElement('button')
   button.classList.add('step-button')
   button.classList.add(`col-${col}`)
   button.dataset.row = String(row)
   button.dataset.col = String(col)
-  button.dataset.isOn = String(false)
-
+  button.addEventListener('mouseenter', toggleButtonOnMouseEnter)
+  button.addEventListener('mousedown', onMousedown)
   return button
 }
 
@@ -38,7 +63,7 @@ function createTrack({ note, row, length }: { note: string, row: number, length:
   return track
 }
 
-export class Matrix {
+class Matrix {
   notes: string[]
   constructor(notes: string[]) {
     this.notes = notes
@@ -54,6 +79,13 @@ export class Matrix {
     const section = document.getElementById('matrix-section')
     section.append(matrixFrag)
   }
+}
 
-
+// document needs to be ready for this
+export function renderMatrix(notes: string[]) {
+  const matrix = new Matrix(notes)
+  matrix.renderMatrix()
+  const { body } = document
+  body.addEventListener('mouseup', onMouseup)
+  return matrix
 }
