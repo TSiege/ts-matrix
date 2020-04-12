@@ -1,13 +1,9 @@
-import { onMousedown, toggleButtonOnMouseEnter } from './events'
-
 function createButton(row: number, col: number) {
   const button = document.createElement('button')
   button.classList.add('step-button')
   button.classList.add(`col-${col}`)
   button.dataset.row = String(row)
   button.dataset.col = String(col)
-  button.addEventListener('mouseenter', toggleButtonOnMouseEnter)
-  button.addEventListener('mousedown', onMousedown)
   return button
 }
 
