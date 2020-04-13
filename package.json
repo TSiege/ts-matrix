@@ -3,9 +3,7 @@
   "version": "0.1.0",
   "homepage": "http://tsiege.github.io/js-matrix",
   "private": true,
-  "dependencies": {
-    "standardized-audio-context": "^24.1.2"
-  },
+  "dependencies": {},
   "scripts": {
     "start": "parcel serve src/index.html",
     "build": "cross-env NODE_ENV=production parcel build src/index.html --public-url .",

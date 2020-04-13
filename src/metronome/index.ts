@@ -1,4 +1,4 @@
-import { playNotesAtTime } from '../audio'
+import { playNotesAtTime, playNote } from '../audio'
 import { drawPlayingCues, removePlayingCues } from '../matrix'
 
 function stepPerSec(bpm = 128) {
@@ -32,7 +32,9 @@ export default class Metronome {
   }
 
   toggleMatrix(row: number, col:number) {
-    this.matrix[row][col] = !this.matrix[row][col]
+    const { matrix, notes, audioCtx } = this
+    matrix[row][col] = !matrix[row][col]
+    playNote(notes[row], audioCtx)
   }
 
   play() {
