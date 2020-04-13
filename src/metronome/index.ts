@@ -85,8 +85,8 @@ export default class Metronome {
   private scheduleNotesToPlay() {
     const { audioCtx, bpm } = this
     const notes = this.getNotesAtCurrentStep()
-    const scheduledAt = audioCtx.currentTime + stepPerSec(bpm)
-    playNotesAtTime({ notes, scheduledAt, audioCtx })
+    // const scheduledAt = audioCtx.currentTime + stepPerSec(bpm)
+    playNotesAtTime({ notes, duration: stepPerSec(bpm), audioCtx })
   }
 
   private draw = () => {
