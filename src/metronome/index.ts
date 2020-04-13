@@ -1,3 +1,6 @@
+import { playNotesAtTime } from '../audio'
+import { drawPlayingCues, removePlayingCues } from '../matrix'
+
 function stepPerSec(bpm = 128) {
   return (((60 / bpm) * 4) / 16)
 }
@@ -5,16 +8,7 @@ function stepPerSec(bpm = 128) {
 function stepPerMs(bpm = 128) {
   return stepPerSec(bpm) * 1000
 }
-
-type playNotesAtTime = (notes: string[], time: number) => void
-type drawPlayingElements = (prevStep: number, nextStep: number) => void
-
-interface MetronomeConstructorArgs {
-  notes: string[]
-  drawPlayingElements: drawPlayingElements
-  playNotesAtTime: playNotesAtTime
-}
-
+let drawTimeDifferences = []
 export default class Metronome {
   bpm: number
   isOn: boolean
@@ -24,20 +18,17 @@ export default class Metronome {
   matrix: boolean[][]
   interval: NodeJS.Timeout | null
   audioCtx: AudioContext
-  nextDrawTime: number | null
-  drawPlayingElements: drawPlayingElements
-  playNotesAtTime: playNotesAtTime
-  constructor({ notes, playNotesAtTime, drawPlayingElements }: MetronomeConstructorArgs) {
+  hasDrawnCues: boolean
+  constructor(notes: string[]) {
     const AudioContext = window.AudioContext || (window as any).webkitAudioContext
     this.bpm = 128
     this.isOn = false
+    this.step = null
     this.notes = notes
     this.interval = null
     this.audioCtx = new AudioContext() as AudioContext
+    this.hasDrawnCues = false
     this.matrix = notes.map(() => new Array(notes.length).fill(false))
-    this.drawPlayingElements = drawPlayingElements
-    this.playNotesAtTime = playNotesAtTime
-    this.draw()
   }
 
   toggleMatrix(row: number, col:number) {
@@ -52,15 +43,15 @@ export default class Metronome {
 
   pause() {
     const { interval } = this
-    clearInterval(interval)
+    interval && clearInterval(interval)
     this.isOn = false
-    this.nextDrawTime = null
   }
 
   stop() {
     this.pause()
     this.step = null
     this.prevStep = null
+    removePlayingCues()
   }
 
   // private functions
@@ -72,7 +63,9 @@ export default class Metronome {
       this.step += 1
     }
     this.prevStep = step
+    this.hasDrawnCues = false
     this.scheduleNotesToPlay()
+    this.draw()
   }
 
   private getNotesAtCurrentStep() {
@@ -88,27 +81,21 @@ export default class Metronome {
   }
 
   private scheduleNotesToPlay() {
-    const { audioCtx, bpm, playNotesAtTime } = this
+    const { audioCtx, bpm } = this
     const notes = this.getNotesAtCurrentStep()
-    const nextDrawTime = audioCtx.currentTime + stepPerSec(bpm)
-
-    playNotesAtTime(notes, nextDrawTime)
+    const scheduledAt = audioCtx.currentTime + stepPerSec(bpm)
+    playNotesAtTime({ notes, scheduledAt, audioCtx })
   }
 
   private draw = () => {
-    const {
-      prevStep,
-      step,
-      nextDrawTime,
-      audioCtx,
-      drawPlayingElements,
-      draw
-    } = this
-    if (nextDrawTime === null || nextDrawTime > audioCtx.currentTime) {
-      return
+    const { prevStep, step, draw, isOn } = this
+    if (!this.hasDrawnCues) {
+      drawPlayingCues(prevStep, step)
+      this.hasDrawnCues = true
     }
-    drawPlayingElements(prevStep, step)
-    requestAnimationFrame(draw)
+    if (isOn) {
+      requestAnimationFrame(draw)
+    }
   }
 
 }

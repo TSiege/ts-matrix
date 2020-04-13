@@ -7,15 +7,24 @@ export function render({ notes, metronome }: { notes: string[], metronome: Metro
   addEventHandlers(metronome)
 }
 
-export function drawPlayingElements(prevStep: number, nextStep?: number) {
-  const elsToStopPlaying = document.getElementsByClassName(`col-${prevStep}`)
-  for (const el of elsToStopPlaying) {
-    el.classList.remove('playing')
+export function drawPlayingCues(prevStep: number, nextStep?: number) {
+  if (prevStep) {
+    const elsToStopPlaying = [...document.getElementsByClassName(`col-${prevStep}`)]
+    for (const el of elsToStopPlaying) {
+      el.classList.remove('playing')
+    }
   }
   if (nextStep) {
-    const elsToPlay = document.getElementsByClassName(`col-${nextStep}`)
+    const elsToPlay = [...document.getElementsByClassName(`col-${nextStep}`)]
     for (const el of elsToPlay) {
       el.classList.add('playing')
     }
+  }
+}
+
+export async function removePlayingCues() {
+  const elsToStopPlaying = [...document.getElementsByClassName('playing')]
+  for (const el of elsToStopPlaying) {
+    el.classList.remove('playing')
   }
 }

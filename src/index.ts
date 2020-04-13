@@ -1,5 +1,5 @@
-import { NOTES } from './audio'
-import { render, drawPlayingElements } from './matrix'
+import { NOTES } from './audio/notes'
+import { render } from './matrix'
 import Metronome from './metronome'
 
 function onReady(fn) {
@@ -11,7 +11,7 @@ function onReady(fn) {
 }
 
 function renderJsMatrix () {
-  const metronome = new Metronome({ notes: NOTES, drawPlayingElements, playNotesAtTime })
+  const metronome = new Metronome(NOTES)
   render({ notes: NOTES, metronome })
 }
 

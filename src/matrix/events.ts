@@ -27,8 +27,8 @@ function turnOff(metronome: Metronome) {
     if (isOn) {
       playButton.classList.toggle('on')
       playButton.innerHTML = playSVGStr
-      metronome.stop()
     }
+    metronome.stop()
   }
 }
 
