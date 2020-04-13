@@ -33,8 +33,11 @@ export default class Metronome {
 
   toggleMatrix(row: number, col:number) {
     const { matrix, notes, audioCtx } = this
-    matrix[row][col] = !matrix[row][col]
-    playNote(notes[row], audioCtx)
+    const isOn = !matrix[row][col]
+    matrix[row][col] = isOn
+    if (isOn) {
+      playNote(notes[row], audioCtx)
+    }
   }
 
   play() {

@@ -26,8 +26,6 @@ function generateToneBuffers(audioCtx) {
   return buffersByTone
 }
 
-window.generateToneBuffers = generateToneBuffers
-
 const buffersByTone = generateToneBuffers(new (window.AudioContext || (window as any).webkitAudioContext))
 
 export function playNote(tone, audioCtx) {
@@ -52,7 +50,7 @@ export function playNotesAtTime({ notes, duration, audioCtx }: PlayNotesAtTimeOp
   if (!notes.length) {
     return
   }
-
+  const targetGain = Math.floor(1 / notes.length * 100) / 100
   const gainNode = audioCtx.createGain()
   const sourceNodes = notes.map(tone => {
     const source = audioCtx.createBufferSource()
@@ -63,6 +61,6 @@ export function playNotesAtTime({ notes, duration, audioCtx }: PlayNotesAtTimeOp
   gainNode.gain.setTargetAtTime(0, audioCtx.currentTime, 0)
   gainNode.connect(audioCtx.destination)
   sourceNodes.forEach(sn => sn.start())
-  gainNode.gain.setTargetAtTime(1 / notes.length, audioCtx.currentTime + duration, 0.05)
+  gainNode.gain.setTargetAtTime(targetGain, audioCtx.currentTime + duration, 0.05)
   gainNode.gain.setTargetAtTime(0, audioCtx.currentTime + 0.25, 0.125)
 }
