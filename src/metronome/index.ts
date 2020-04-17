@@ -36,7 +36,7 @@ export default class Metronome {
     const isOn = !matrix[row][col]
     matrix[row][col] = isOn
     if (isOn) {
-      playNote(notes[row], audioCtx)
+      playNote({ note: notes[row], audioCtx })
     }
   }
 
