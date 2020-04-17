@@ -8,13 +8,13 @@ export function render({ notes, metronome }: { notes: string[], metronome: Metro
 }
 
 export function drawPlayingCues(prevStep: number, nextStep?: number) {
-  if (prevStep) {
+  if (prevStep !== undefined) {
     const elsToStopPlaying = [...document.getElementsByClassName(`col-${prevStep}`)]
     for (const el of elsToStopPlaying) {
       el.classList.remove('playing')
     }
   }
-  if (nextStep) {
+  if (nextStep !== undefined) {
     const elsToPlay = [...document.getElementsByClassName(`col-${nextStep}`)]
     for (const el of elsToPlay) {
       el.classList.add('playing')
