@@ -1,0 +1,101 @@
+.controller {
+  width: 500px;
+  padding: 30px 5px 5px;
+  margin: 0 auto;
+  background-color: var(--darkGrey);
+}
+
+.header {
+  display: flex;
+  padding: 0px 10px;
+  align-content: center;
+  justify-content: space-between;
+}
+
+.title {
+  color: var(--red);
+  margin: 5px 0;
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+}
+
+.toolbar button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--fontGrey);
+  width: 34px;
+  height: 34px;
+  border-radius: 1px;
+  border: 1px solid var(--fontGrey);
+  font-size: 15px;
+  font-weight: 900;
+  margin: 0 2px;
+  background-color: var(--darkGrey);
+}
+
+.toolbar button:hover {
+  cursor: pointer;
+}
+
+.toolbar input {
+  text-align: center;
+  margin: 2px;
+  border: 1px solid var(--fontGrey);
+  width: 50px;
+  height: 30px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--fontGrey);
+  background-color: var(--darkGrey);
+}
+
+.bpm {
+  padding: 0 5px;
+  margin-right: 20px;
+}
+
+.steps {
+  display: flex;
+  margin-bottom: 5px;
+  justify-content: flex-end;
+  align-content: space-between;
+  border-top: 1px solid var(--fontGrey);
+  border-bottom: 1px solid var(--fontGrey);
+}
+
+.step {
+  padding: 5px 3.5px;
+  width: 20px;
+  text-align: center;
+}
+
+.step.playing {
+  color: white;
+}
+
+.step.playing:nth-child(n):nth-last-child(n+13) {
+  background-color: var(--stepRed);
+  box-shadow: 0 0 10px var(--stepRed);
+}
+
+.step.playing:nth-child(n+5):nth-last-child(n+9) {
+  background-color: var(--stepOrange);
+  box-shadow: 0 0 10px var(--stepOrange);
+}
+
+.step.playing:nth-child(n+9):nth-last-child(n+5) {
+  background-color: var(--stepYellow);
+  box-shadow: 0 0 10px var(--stepYellow);
+}
+
+.step.playing:nth-child(n+13):nth-last-child(n) {
+  background-color: var(--stepBeige);
+  box-shadow: 0 0 10px var(--stepBeige);
+}
+
+
+/*# sourceMappingURL=/controller.84726ee0.css.map */
