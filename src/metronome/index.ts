@@ -59,7 +59,7 @@ export default class Metronome {
     removePlayingCues()
   }
 
-  // private functions
+  // private methods
   private intervalCb = () => {
     const { step } = this
     if (step === null || step === 15) {
