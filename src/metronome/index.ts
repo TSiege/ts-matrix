@@ -8,7 +8,7 @@ function stepPerSec(bpm = 128) {
 function stepPerMs(bpm = 128) {
   return stepPerSec(bpm) * 1000
 }
-let drawTimeDifferences = []
+
 export default class Metronome {
   bpm: number
   isOn: boolean
@@ -88,7 +88,6 @@ export default class Metronome {
   private scheduleNotesToPlay() {
     const { audioCtx, bpm } = this
     const notes = this.getNotesAtCurrentStep()
-    // const scheduledAt = audioCtx.currentTime + stepPerSec(bpm)
     playNotesAtTime({ notes, duration: stepPerSec(bpm), audioCtx })
   }
 
