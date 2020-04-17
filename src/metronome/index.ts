@@ -16,7 +16,7 @@ export default class Metronome {
   prevStep: number
   notes: string[]
   matrix: boolean[][]
-  interval: NodeJS.Timeout | null
+  interval: number | null
   audioCtx: AudioContext
   hasDrawnCues: boolean
   constructor(notes: string[]) {
