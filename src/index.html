@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <title>JS-Matrix</title>
+    <link href="./styles/index.css" rel="stylesheet">
+    <link href="./styles/track.css" rel="stylesheet">
+    <link href="./styles/controller.css" rel="stylesheet">
+    <link href="./styles/stepButton.css" rel="stylesheet">
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root">
+      <div class="App">
+        <div class="controller">
+          <div class="header">
+            <h1 class="title">JS-Matrix</h1>
+            <span class="toolbar">
+              <button id="stop">
+                <svg width="15" height="15" id="Layer_1" viewBox="0 0 506.1 506.1" xmlns="http://www.w3.org/2000/svg"><path d="m489.609 0h-473.118c-9.108 0-16.491 7.383-16.491 16.491v473.118c0 9.107 7.383 16.491 16.491 16.491h473.119c9.107 0 16.49-7.383 16.49-16.491v-473.118c0-9.108-7.383-16.491-16.491-16.491z"></path></svg>
+              </button>
+              <button id="play">
+                <svg width="20" height="20" viewBox="0 0 494.942 494.942" xmlns="http://www.w3.org/2000/svg"><path d="m35.353 0 424.236 247.471-424.236 247.471z"></path></svg>
+              </button>
+            </span>
+          </div>
+          <div class="steps">
+            <span class="step col-0">1</span>
+            <span class="step col-1">2</span>
+            <span class="step col-2">3</span>
+            <span class="step col-3">4</span>
+            <span class="step col-4">5</span>
+            <span class="step col-5">6</span>
+            <span class="step col-6">7</span>
+            <span class="step col-7">8</span>
+            <span class="step col-8">9</span>
+            <span class="step col-9">10</span>
+            <span class="step col-10">11</span>
+            <span class="step col-11">12</span>
+            <span class="step col-12">13</span>
+            <span class="step col-13">14</span>
+            <span class="step col-14">15</span>
+            <span class="step col-15">16</span>
+          </div>
+          <section id="matrix-section" class="tracks"></section>
+        </div>
+      </div>
+    </div>
+    <script src="./index.ts"></script>
+  </body>
+</html>
