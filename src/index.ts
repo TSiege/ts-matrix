@@ -10,7 +10,7 @@ function onReady(fn) {
   }
 }
 
-function renderJsMatrix () {
+function renderJsMatrix() {
   const metronome = new Metronome(NOTES)
   render({ notes: NOTES, metronome })
 }

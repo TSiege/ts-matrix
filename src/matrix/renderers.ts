@@ -20,7 +20,15 @@ function createTrackNameH3(name: string) {
   return h3
 }
 
-function createTrack({ note, row, length }: { note: string, row: number, length: number }) {
+function createTrack({
+  note,
+  row,
+  length,
+}: {
+  note: string
+  row: number
+  length: number
+}) {
   const track = document.createElement('div')
   track.classList.add('track')
   const h3 = createTrackNameH3(note)

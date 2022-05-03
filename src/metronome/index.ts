@@ -2,7 +2,7 @@ import { playNotesAtTime, playNote } from '../audio'
 import { drawPlayingCues, removePlayingCues } from '../matrix'
 
 function stepPerSec(bpm = 128) {
-  return (((60 / bpm) * 4) / 16)
+  return ((60 / bpm) * 4) / 16
 }
 
 function stepPerMs(bpm = 128) {
@@ -16,11 +16,12 @@ export default class Metronome {
   prevStep: number
   notes: string[]
   matrix: boolean[][]
-  interval: number | null
+  interval: NodeJS.Timer | null
   audioCtx: AudioContext
   hasDrawnCues: boolean
   constructor(notes: string[]) {
-    const AudioContext = window.AudioContext || (window as any).webkitAudioContext
+    const AudioContext =
+      window.AudioContext || (window as any).webkitAudioContext
     this.bpm = 128
     this.isOn = false
     this.step = null
@@ -31,7 +32,7 @@ export default class Metronome {
     this.matrix = notes.map(() => new Array(notes.length).fill(false))
   }
 
-  toggleMatrix(row: number, col:number) {
+  toggleMatrix(row: number, col: number) {
     const { matrix, notes, audioCtx } = this
     const isOn = !matrix[row][col]
     matrix[row][col] = isOn
@@ -101,5 +102,4 @@ export default class Metronome {
       requestAnimationFrame(draw)
     }
   }
-
 }
