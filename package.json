@@ -1,7 +1,7 @@
 {
-  "name": "js-matrix",
+  "name": "ts-matrix",
   "version": "0.1.0",
-  "homepage": "http://tsiege.github.io/js-matrix",
+  "homepage": "http://tsiege.github.io/ts-matrix",
   "private": true,
   "scripts": {
     "start": "parcel serve src/index.html",
